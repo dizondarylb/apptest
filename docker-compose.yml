@@ -1,0 +1,50 @@
+version: '3'
+
+services:
+  nginx:
+    depends_on:
+      - php
+    image: nginx:latest
+    volumes:
+      - ./public:/public
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    networks: 
+      apptest.dizondeveloper.com:
+    ports:
+      - "8041:90"
+    restart: always
+
+  php:
+    build: 
+      context: ./public
+      dockerfile: Dockerfile
+    volumes:
+      - ./public:/public
+    depends_on:
+      - database
+    networks:
+      apptest.dizondeveloper.com:
+
+  database:
+    image: mysql:5.7
+    networks:
+      apptest.dizondeveloper.com:
+    ports:
+      - 8043:3306
+    env_file:
+      - .env
+
+  phpmyadmin:
+    depends_on:
+      - database
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - '8042:80'
+    env_file:
+      - .env
+    networks:
+      apptest.dizondeveloper.com:
+
+networks:
+  apptest.dizondeveloper.com:

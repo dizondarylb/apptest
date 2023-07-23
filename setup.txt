@@ -1,0 +1,53 @@
+Technologies used:
+-	Codeigniter 3.1.11 (PHP Framework)
+-	Bootstrap (CSS Framework)
+-	Jquery using ajax
+-	Jquery Datatables
+-	Mysql Database
+-	Any library for qr code generator
+    * qr scanner: https://github.com/zxing-js/browser
+    * qr generator: https://davidshimjs.github.io/qrcodejs/
+
+1. download Codeigniter 3.1.11
+    https://codeigniter.com/userguide3/installation/downloads.html
+    then
+    https://codeigniter.com/userguide3/installation/index.html
+
+2. In composer.json,
+    replace from mikey179/vfsStream to mikey179/vfsstream
+
+3. composer install
+
+composer suggest
+    * Package phpunit/php-token-stream is abandoned, you should avoid using it. No replacement was suggested.
+    * Package phpunit/phpunit-mock-objects is abandoned, you should avoid using it. No replacement was suggested.
+
+4. create docker-compose.yml in base directory
+    * nginx
+    * mysql (database)
+    * phpmyadmin
+    * php (added Docker File inside app folder)
+
+5. create Dockerfile in app folder (Codeigniter 3.1.11 "php": ">=5.3.7")
+    * php:7.2-fpm-alpine
+
+6. create default.conf in base directory (for nginx config)
+    * listen 90
+
+7. docker-compose run background
+    * docker-compose -f docker-compose.yml up --build -d
+
+8. to access the app,
+    * localhost:8041
+
+9. to access the phpmyadmin,
+    * localhost:8042
+
+10. First run the migration setup,
+    * localhost:8041/migration/setup
+
+11. Now, you can login using,
+    * username: admin
+    * password: Password1234+
+
+12. You can access also with this links https://apptest.dizondeveloper.com
