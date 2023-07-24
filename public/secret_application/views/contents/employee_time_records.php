@@ -13,7 +13,7 @@
             <tr>
                 <th>Employee No.</th>
                 <th>Employee Name</th>
-                <th>User Id</th>
+                <th>Admin Username</th>
                 <th>Date Added</th>
                 <th>Time In</th>
                 <th>Time Out</th>
